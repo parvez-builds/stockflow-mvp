@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="container" style="max-width:420px">
+  <h3 class="mt-5 mb-3">Sign up</h3>
+  <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+  <form th:action="@{/signup}" th:object="${form}" method="post">
+    <input class="form-control mb-1" th:field="*{organizationName}" placeholder="Organization name">
+    <div class="text-danger small mb-2" th:errors="*{organizationName}"></div>
+
+    <input class="form-control mb-1" th:field="*{email}" placeholder="Email">
+    <div class="text-danger small mb-2" th:errors="*{email}"></div>
+
+    <input class="form-control mb-1" type="password" th:field="*{password}" placeholder="Password (min 6)">
+    <div class="text-danger small mb-2" th:errors="*{password}"></div>
+
+    <input class="form-control mb-1" type="password" th:field="*{confirmPassword}" placeholder="Confirm password">
+    <div class="text-danger small mb-3" th:errors="*{confirmPassword}"></div>
+
+    <button class="btn btn-primary w-100">Create account</button>
+  </form>
+  <p class="mt-3"><a href="/login">Back to login</a></p>
+</body>
+</html>
