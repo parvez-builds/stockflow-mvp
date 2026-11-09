@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<div class="container" style="max-width:600px">
+  <h4 class="mb-3">Product</h4>
+  <form th:action="${action}" th:object="${form}" method="post">
+    <label>Name</label>
+    <input class="form-control" th:field="*{name}">
+    <div class="text-danger small" th:errors="*{name}"></div>
+
+    <label class="mt-2">SKU</label>
+    <input class="form-control" th:field="*{sku}">
+    <div class="text-danger small" th:errors="*{sku}"></div>
+
+    <label class="mt-2">Description</label>
+    <input class="form-control" th:field="*{description}">
+
+    <label class="mt-2">Quantity on hand</label>
+    <input type="number" class="form-control" th:field="*{quantityOnHand}">
+    <div class="text-danger small" th:errors="*{quantityOnHand}"></div>
+
+    <label class="mt-2">Cost price</label>
+    <input type="number" step="0.01" class="form-control" th:field="*{costPrice}">
+    <div class="text-danger small" th:errors="*{costPrice}"></div>
+
+    <label class="mt-2">Selling price</label>
+    <input type="number" step="0.01" class="form-control" th:field="*{sellingPrice}">
+    <div class="text-danger small" th:errors="*{sellingPrice}"></div>
+
+    <label class="mt-2">Low stock threshold (blank = org default)</label>
+    <input type="number" class="form-control" th:field="*{lowStockThreshold}">
+    <div class="text-danger small" th:errors="*{lowStockThreshold}"></div>
+
+    <button class="btn btn-primary mt-3">Save</button>
+    <a class="btn btn-link mt-3" href="/products">Cancel</a>
+  </form>
+</div>
+</body>
+</html>
