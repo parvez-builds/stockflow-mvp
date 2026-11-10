@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<div class="container">
+  <h4 class="mb-3">Dashboard</h4>
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card p-3">
+        <div class="text-muted">Total products</div>
+        <h2 th:text="${d.totalProducts}">0</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card p-3">
+        <div class="text-muted">Total units in stock</div>
+        <h2 th:text="${d.totalQuantity}">0</h2>
+      </div>
+    </div>
+  </div>
+
+  <h5>Low stock items</h5>
+  <table class="table">
+    <thead>
+      <tr><th>Name</th><th>SKU</th><th>Quantity</th><th>Threshold</th></tr>
+    </thead>
+    <tbody>
+      <tr th:each="p : ${d.lowStock}">
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.sku}"></td>
+        <td th:text="${p.quantityOnHand}"></td>
+        <td th:text="${p.lowStockThreshold != null ? p.lowStockThreshold : d.defaultThreshold}"></td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(d.lowStock)}">
+        <td colspan="4" class="text-muted">Nothing is low on stock.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
